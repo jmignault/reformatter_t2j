@@ -22,9 +22,11 @@ for fn in os.listdir(args.infiles):
   if ext == '.doc':
     try:
       print("Converting " + fn)
-      cmdstr = 'soffice --convert-to pdf --outdir "' + outpath + '" "' + args.infiles + '\\' + fn + '"'
+      cmdstr = 'soffice --convert-to pdf --outdir "' + outpath + '" "' + args.infiles + '/' + fn + '"'
+      print(cmdstr)
       os.system(cmdstr)
-      logf.write('Converted ' + fn + ' to pdf\n')
+      logstr = datetime.date.strftime(datetime.date.today(), "%m%d%y:%M:%S")+ ' Converted ' + fn + ' to pdf\n'
+      logf.write(logstr)
     except:
       continue
 
