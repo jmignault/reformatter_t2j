@@ -25,7 +25,7 @@ for fn in os.listdir(args.infiles):
       print(f"Converting {fn}")
       cmdstr = 'soffice --convert-to pdf --outdir "' + outpath + '" "' + args.infiles + '/' + fn + '"'
       os.system(cmdstr)
-      lstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y:%M:%S")
+      lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
       logstr = f"{lstamp}: Converted {fn} to pdf\n"
       logf.write(logstr)
     except:
