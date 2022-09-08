@@ -3,6 +3,8 @@ import os
 import argparse
 import datetime
 
+# array of types to be converted
+fexts = ('.doc', '.docx')
 # define arguments and parse them
 parser = argparse.ArgumentParser(description='Convert a folder of files to pdf format.')
 parser.add_argument('infiles', help="Folder containing files to be converted")
@@ -20,7 +22,7 @@ logf = open(logfn, 'w')
 
 for fn in os.listdir(args.infiles):
   ext = os.path.splitext(fn)[-1].lower()
-  if ext == '.doc':
+  if ext in fexts:
     try:
       print(f"Converting {fn}")
       cmdstr = 'soffice --convert-to pdf --outdir "' + outpath + '" "' + args.infiles + '/' + fn + '"'
