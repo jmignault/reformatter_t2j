@@ -9,7 +9,7 @@ headless executable which is part of the default installation of
 [LibreOffice.](https://www.libreoffice.org "LibreOffice site")
 
 Once installed soffice needs to be on the executable path. This is
-done by appending the soffice directory to the PATH enviromnet
+done by appending the soffice directory to the PATH environment
 variable. For example, on Windows, this would be done by typing the
 following in a CMD shell:
 
