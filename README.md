@@ -19,4 +19,4 @@ On Windows, the directory parameter needs to be a full double-quoted
 path.
 
 The script works with standard Python 3 libraries and requires Python
-3.
+3. It was developed and tested using Python 3.7.3.
