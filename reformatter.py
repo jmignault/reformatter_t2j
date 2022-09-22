@@ -21,16 +21,17 @@ logfn = f"{args.infiles}/{tstamp}_processing_log.txt"
 logf = open(logfn, 'w')
 
 for fn in os.listdir(args.infiles):
-  ext = os.path.splitext(fn)[-1].lower()
-  if ext in fexts:
-    try:
-      print(f"Converting {fn}")
-      cmdstr = 'soffice --convert-to pdf --outdir "' + outpath + '" "' + args.infiles + '/' + fn + '"'
-      os.system(cmdstr)
-      lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
-      logstr = f"{lstamp}: Converted {fn} to pdf\n"
-      logf.write(logstr)
-    except:
+   ext = os.path.splitext(fn)[-1].lower()
+   if ext in fexts:
+      try:
+         lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
+         print(f"Converting {fn}")
+         cmdstr = 'soffice --convert-to pdf --outdir "' + outpath + '" "' + args.infiles + '/' + fn + '"'
+         os.system(cmdstr)
+         logstr = f"{lstamp}: Converted {fn} to pdf\n"
+         logf.write(logstr)
+      except BaseException as err:
+         logf.write(f"{lstamp}:Could not convert {fn}: {err}")
       continue
 
 logf.close()
