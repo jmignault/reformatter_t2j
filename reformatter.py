@@ -11,14 +11,14 @@ parser.add_argument('infiles', help="Folder containing files to be converted")
 
 args = parser.parse_args()
 
-tstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y%M%S")
-logfn = f"{tstamp}_processing_log.txt"
-
-logf = open(logfn, 'w')
-
 outpath = os.path.join(args.infiles, "../processed")
 if not (os.path.exists(outpath)):
    os.mkdir(outpath)
+
+tstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y%M%S")
+logfn = os.path.join(outpath, f"{tstamp}_processing_log.txt")
+
+logf = open(logfn, 'w')
 
 for path, subdir, files in os.walk(args.infiles):
 
