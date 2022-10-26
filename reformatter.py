@@ -16,7 +16,8 @@ if not (os.path.exists(outpath)):
    os.mkdir(outpath)
 
 tstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y%M%S")
-logfn = os.path.join(outpath, f"{tstamp}_{args.infile}_log.txt")
+dname = os.path.basename(os.path.normpath(args.infiles))
+logfn = os.path.join(outpath, f"{tstamp}_{dname}_log.txt")
 
 logf = open(logfn, 'w')
 
