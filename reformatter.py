@@ -29,9 +29,10 @@ for path, subdir, files in os.walk(args.infiles):
    for name in files:
       fn = os.path.join(path, name)
       ext = os.path.splitext(fn)[-1].lower()
+      lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
+ 
       if ext in fexts:
          try:
-            lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
             print(f"Converting {fn}")
             cmdstr = 'soffice --convert-to pdf --outdir "' + procdir + '" "' + fn + '"'
             os.system(cmdstr)
@@ -40,5 +41,7 @@ for path, subdir, files in os.walk(args.infiles):
          except BaseException as err:
             logf.write(f"{lstamp}:Could not convert {fn}: {err}")
          continue
+      else:
+         logf.write(f"{lstamp}:Skipped {fn}")
 
 logf.close()
