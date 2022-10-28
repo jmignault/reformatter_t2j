@@ -19,7 +19,7 @@ tstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y%M%S")
 dname = os.path.basename(os.path.normpath(args.infiles))
 logfn = os.path.join(outpath, f"{tstamp}_{dname}_log.txt")
 
-logf = open(logfn, 'w')
+logf = open(logfn, 'w', encoding="utf-8")
 
 for path, subdir, files in os.walk(args.infiles):
 
