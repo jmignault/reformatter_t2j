@@ -11,7 +11,7 @@ parser.add_argument('infiles', help="Folder containing files to be converted")
 
 args = parser.parse_args()
 
-outpath = os.path.join(args.infiles, "../processed")
+outpath = os.path.join(os.getcwd(), "processed")
 if not (os.path.exists(outpath)):
    os.mkdir(outpath)
 
@@ -46,3 +46,4 @@ for path, subdir, files in os.walk(args.infiles):
          logf.write(f"{lstamp}: Skipped {fn}\n")
 
 logf.close()
+
