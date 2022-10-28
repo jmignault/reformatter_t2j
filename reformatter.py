@@ -43,6 +43,6 @@ for path, subdir, files in os.walk(args.infiles):
             logf.write(f"{lstamp}:Could not convert {fn}: {err}")
          continue
       else:
-         logf.write(f"{lstamp}:Skipped {fn}\n")
+         logf.write(f"{lstamp}: Skipped {fn}\n")
 
 logf.close()
