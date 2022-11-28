@@ -23,7 +23,7 @@ logf = open(logfn, 'w', encoding="utf-8")
 
 for path, subdir, files in os.walk(args.infiles):
 
-   procdir = os.path.join(outpath, path)
+   procdir = os.path.join(outpath, os.path.relpath(path, os.path.dirname(args.infiles)))
    if not(os.path.exists(procdir)):
       os.mkdir(procdir)
 
