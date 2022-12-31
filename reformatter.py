@@ -36,11 +36,16 @@ for path, subdir, files in os.walk(args.infiles):
       os.mkdir(procdir)
 
    for name in files:
+      # get a full path to pass to function
       fn = os.path.join(path, name)
+      # get the file extension
       ext = os.path.splitext(fn)[-1].lower()
+      # calculate a timestamp for the logfile
       lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
  
+      # does file need conversion?
       if ext in fkeys:
+         # yes, print a msg & call function associated with the extension
          try:
             print(f"Converting {fn}")
             formats[ext](fn, procdir)
@@ -49,6 +54,7 @@ for path, subdir, files in os.walk(args.infiles):
          except BaseException as err:
             logf.write(f"{lstamp}:Could not convert {fn}: {err}")
          continue
+      # not converting, log that file was skipped
       else:
          logf.write(f"{lstamp}: Skipped {fn}\n")
 
