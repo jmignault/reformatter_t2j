@@ -3,8 +3,16 @@ import os
 import argparse
 import datetime
 
-# array of types to be converted
-fexts = ('.doc', '.docx')
+# converter functions. Must take 2 arguments: filename and output directory.
+def wp_to_pdf(fn, pdir):
+   cmdstr = 'soffice --convert-to pdf --outdir "' + pdir + '" "' + fn + '"'
+   os.system(cmdstr)
+  
+# dictionary of format conversions: keys are extensions, value is function to call for conversion 
+formats = {'.doc':wp_to_pdf, '.docx':wp_to_pdf, '.wp':wp_to_pdf, '.pub':wp_to_pdf, '.txt':wp_to_pdf}
+
+# make a list of extensions
+fkeys = list(formats.keys())
 # define arguments and parse them
 parser = argparse.ArgumentParser(description='Convert a folder of files to pdf format.')
 parser.add_argument('infiles', help="Folder containing files to be converted")
@@ -32,11 +40,10 @@ for path, subdir, files in os.walk(args.infiles):
       ext = os.path.splitext(fn)[-1].lower()
       lstamp = datetime.date.strftime(datetime.datetime.now(), "%m-%d-%y:%M:%S")
  
-      if ext in fexts:
+      if ext in fkeys:
          try:
             print(f"Converting {fn}")
-            cmdstr = 'soffice --convert-to pdf --outdir "' + procdir + '" "' + fn + '"'
-            os.system(cmdstr)
+            formats[ext](fn, procdir)
             logstr = f"{lstamp}: Converted {fn} to pdf\n"
             logf.write(logstr)
          except BaseException as err:
@@ -46,4 +53,5 @@ for path, subdir, files in os.walk(args.infiles):
          logf.write(f"{lstamp}: Skipped {fn}\n")
 
 logf.close()
+
 
