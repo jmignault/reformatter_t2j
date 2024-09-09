@@ -8,7 +8,6 @@ from pathlib import Path
 def tif_to_jpx(fn, pdir):
    outfn = f'{Path(fn).stem}.jp2'
    outf = os.path.join(pdir, outfn)
-   print(outf)
    cmdstr = f'magick {fn} {outf}'
    os.system(cmdstr)
 
@@ -44,7 +43,7 @@ for path, subdir, files in os.walk(args.infiles):
       if ext in fkeys:
          # yes, print a msg & call function associated with the extension
          try:
-            print(f"Converting {fn}")
+            print(f"Converting {fn} to JP2")
             formats[ext](fn, path)
             logstr = f"{lstamp}: Converted {fn} to jp2\n"
             logf.write(logstr)
