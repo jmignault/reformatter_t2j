@@ -5,10 +5,6 @@ import datetime
 from pathlib import Path
 
 # converter functions. Must take 2 arguments: filename and output directory.
-def wp_to_pdf(fn, pdir):
-   cmdstr = 'soffice --convert-to pdf --outdir "' + pdir + '" "' + fn + '"'
-   os.system(cmdstr)
-
 def tif_to_jpx(fn, pdir):
    outfn = f'{Path(fn).stem}.jp2'
    outf = os.path.join(pdir, outfn)
