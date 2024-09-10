@@ -13,13 +13,13 @@ def tif_to_jpx(fn, pdir):
 
   
 # dictionary of format conversions: keys are extensions, value is function to call for conversion 
-formats = {'.tif': tif_to_jpx}
+formats = {'.tif': tif_to_jpx, '.tiff': tif_to_jpx}
 
 # make a list of extensions
 fkeys = list(formats.keys())
 # define arguments and parse them
-parser = argparse.ArgumentParser(description='Walk a folder, converting TIFF files to JP2 format.')
-parser.add_argument('infiles', help="Folder containing files to be converted")
+parser = argparse.ArgumentParser(description='Walk a folder, creating JP2 derivatives from TIFF files.')
+parser.add_argument('infiles', help="Folder to be populated with derivatives.")
 
 args = parser.parse_args()
 # set variable to  current directory if dot passed
