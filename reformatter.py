@@ -22,6 +22,9 @@ parser = argparse.ArgumentParser(description='Walk a folder, converting TIFF fil
 parser.add_argument('infiles', help="Folder containing files to be converted")
 
 args = parser.parse_args()
+# set variable to  current directory if dot passed
+# if args.infiles == '.':
+#     args.infiles = os.getcwd()
 
 tstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y%M%S")
 dname = os.path.basename(os.path.normpath(args.infiles))
@@ -43,16 +46,17 @@ for path, subdir, files in os.walk(args.infiles):
       if ext in fkeys:
          # yes, print a msg & call function associated with the extension
          try:
-            print(f"Converting {fn} to JP2")
+            dname = os.path.normpath(fn)
+            print(f"Creating access derivative of {dname}")
             formats[ext](fn, path)
-            logstr = f"{lstamp}: Converted {fn} to jp2\n"
+            logstr = f"{lstamp}: Created access derivative of {dname}\n"
             logf.write(logstr)
          except BaseException as err:
-            logf.write(f"{lstamp}:Could not convert {fn}: {err}")
+            logf.write(f"{lstamp}:Could not create derivative of {dname}: {err}")
          continue
       # not converting, log that file was skipped
       else:
-         logf.write(f"{lstamp}: Skipped {fn}\n")
+         logf.write(f"{lstamp}: Skipped {dname}\n")
 
 logf.close()
 
