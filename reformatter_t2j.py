@@ -8,7 +8,7 @@ from pathlib import Path
 def tif_to_jpx(fn, pdir):
    outfn = f'{Path(fn).stem}.jp2'
    outf = os.path.join(pdir, outfn)
-   cmdstr = f'magick {fn} {outf}'
+   cmdstr = f'magick -define jp2:quality=100 {fn} {outf}'
    os.system(cmdstr)
 
   
@@ -22,15 +22,13 @@ parser = argparse.ArgumentParser(description='Walk a folder, creating JP2 deriva
 parser.add_argument('infiles', help="Folder to be populated with derivatives.")
 
 args = parser.parse_args()
-# set variable to  current directory if dot passed
-# if args.infiles == '.':
-#     args.infiles = os.getcwd()
 
 tstamp = datetime.date.strftime(datetime.datetime.now(), "%m%d%y%M%S")
 dname = os.path.basename(os.path.normpath(args.infiles))
 logfn = os.path.join(f"{tstamp}_{dname}_log.txt")
 
 logf = open(logfn, 'w', encoding="utf-8")
+
 
 for path, subdir, files in os.walk(args.infiles):
 
