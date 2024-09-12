@@ -1,7 +1,8 @@
-# Reformatter #
+# Reformatter_t2j #
 
-Python script to create access derivatives in a folder. The script creates the files in place.  A
-timestamped logfile is written to the directory the script is run from.
+Python script to create access derivatives in a folder. The script
+creates the files in place. A timestamped logfile is written to the
+directory the script is run from.
 
 The script itself can be in any directory, but must be run from the
 directory containing the directory to convert:
