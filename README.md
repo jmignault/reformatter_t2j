@@ -20,7 +20,7 @@ done by appending the magick directory to the PATH environment
 variable. For example, on Windows, this would be done by typing the
 following in a CMD shell:
 
-`set PATH=%PATH%;C:\Program Files\ImageMagick\magick`
+`set PATH=%PATH%;C:\Program Files\ImageMagick\bin\magick`
 
 The script requires Python 3 and uses only standard Python 3
 libraries. It was developed and tested using Python 3.7.3.

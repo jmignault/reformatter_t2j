@@ -13,7 +13,7 @@ def tif_to_jpx(fn, pdir):
 
   
 # dictionary of format conversions: keys are extensions, value is function to call for conversion 
-formats = {'.tif': tif_to_jpx, '.tiff': tif_to_jpx}
+formats = {'.tif': tif_to_jpx, '.tiff': tif_to_jpx, '.jpg': tif_to_jpx}
 
 # make a list of extensions
 fkeys = list(formats.keys())
