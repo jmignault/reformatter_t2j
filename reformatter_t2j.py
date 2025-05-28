@@ -8,12 +8,19 @@ from pathlib import Path
 def tif_to_jpx(fn, pdir):
    outfn = f'{Path(fn).stem}.jp2'
    outf = os.path.join(pdir, outfn)
-   cmdstr = f'magick -define jp2:quality=100 \'{fn}\' \'{outf}\''
+   cmdstr = f'magick -define jpg:quality=100 \'{fn}\' \'{outf}\''
+   os.system(cmdstr)
+
+# converter functions. Must take 2 arguments: filename and output directory.
+def tif_to_jpg(fn, pdir):
+   outfn = f'{Path(fn).stem}.jpg'
+   outf = os.path.join(pdir, outfn)
+   cmdstr = f'magick -define jpg:quality=100 \'{fn}\' \'{outf}\''
    os.system(cmdstr)
 
   
 # dictionary of format conversions: keys are extensions, value is function to call for conversion 
-formats = {'.tif': tif_to_jpx, '.tiff': tif_to_jpx, '.jpg': tif_to_jpx}
+formats = {'.tif': tif_to_jpg, '.tiff': tif_to_jpg, '.jp2': tif_to_jpg}
 
 # make a list of extensions
 fkeys = list(formats.keys())
