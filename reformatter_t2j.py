@@ -28,7 +28,7 @@ formats = {'.tif': tif_to_jpg, '.tiff': tif_to_jpg, '.jp2': tif_to_jpg}
 # make a list of extensions
 fkeys = list(formats.keys())
 # define arguments and parse them
-parser = argparse.ArgumentParser(description='Walk a folder, creating JP2 derivatives from TIFF files.')
+parser = argparse.ArgumentParser(description='Walk a folder, creating access derivatives from master files.')
 parser.add_argument('infiles', help="Folder to be populated with derivatives.")
 
 args = parser.parse_args()
